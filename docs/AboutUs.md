@@ -18,15 +18,15 @@ You can reach us at the email `e1155424@nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Weng Sheng 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wengsheng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/CVincent0907)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Project Management 
 
 ### Johnny Doe
 
