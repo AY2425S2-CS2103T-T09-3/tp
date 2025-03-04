@@ -260,66 +260,117 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+### **Target User Profile**
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* **Type**: F&B/restaurant managers and staff
+* **Proficiency**: Comfortable using Command-Line Interface (CLI) apps
+* **Needs**:
+    * Ability to manage a large number of reservations
+    * Speed and efficiency with typing, prefers keyboard over mouse
+    * Streamlined reservation management to ensure smooth operations
+* **Environment**: Works in a fast-paced restaurant environment where reservations and customer service are key
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+### **Value Proposition**
+
+GastroBook streamlines and collates restaurant reservations, allowing managers to efficiently manage customer bookings, track reservation details, and handle special requests through a fast, command-line interface. The application improves reservation workflow, enhances operational efficiency, and allows for better resource planning.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| **Priority** | **As a …​**   | **I want to …​**                | **So that I can…​**                                                        |
+|------|---------------|---------------------------------|----------------------------------------------------------------------------|
+| `***` | Admin         | Add reservations                | Add bookings to the schedule for planning                                  |
+| `***` | Admin         | Delete reservations             | Cancel a reservation when no longer needed                                |
+| `***` | Admin         | Mark a reservation as paid      | Keep track of each reservation’s payment status                           |
+| `***` | Admin         | Unmark a reservation as paid    | Update status if payment is deleted or an error occurred                   |
+| `***` | Admin         | Exit the application            | Close the app after use                                                    |
+| `***` | Admin         | Find specific reservations      | Locate specific reservations by name or other parameters                  |
+| `***` | Admin         | Edit reservation details        | Update booking details (e.g., name, timeslot) without deleting and recreating|
+| `**` | Admin         | View all reservations for the day | Access the daily reservation schedule for planning resources             |
+| `**` | Admin         | Mark arrival status for customers | Track customer arrivals and handle no-shows                               |
+| `**` | Admin         | Unmark arrival status for customers | Update arrival status when customers don't show up within the designated time|
+| `**` | Admin         | Set reservation time limits     | Automatically release tables when customers do not arrive on time         |
+| `**` | Admin         | Add tables of various sizes     | Accommodate different types of reservations (group bookings, etc.)        |
+| `**` | Admin         | View/Tag reservations with special requests | Easily track special requests per reservation                           |
+| `**` | Admin         | Filter reservations by tags     | View reservations with specific requests at a glance                      |
+| `**` | Admin         | Apply discounts on bills        | Automate pricing adjustments for discounts                                |
+| `**` | New admin     | View help commands              | Get quick tips on how to use the system efficiently                       |
+| `**` | Admin         | Clear all reservations          | Reset the schedule for a new reservation plan                             |
+| `**` | Admin         | Find available slots            | Add new reservations into free slots                                      |
+| `**` | Admin         | Add multiple tables at once     | Handle large group bookings more efficiently                               |
+| `**` | Admin         | View customer details           | Know their booking time, allocated table, dishes ordered, spending, etc.   |
+| `**` | Admin         | Set reservation parameters      | Ensure reservations fit within the table/group limitations                |
+| `*`  | Admin         | Edit menu                       | Modify the restaurant menu to accommodate customer requests and dietary needs |
+| `*`  | Admin         | Find duplicate reservations     | Remove unnecessary or repeated reservations                                |
+| `*`  | New admin     | View history of past payments   | Keep track of payment history for better management                        |
+| `*`  | Admin         | Tag reservations for special requests | Track and manage special requests efficiently                             |
+| `*`  | Admin         | View menu offered by restaurant | Help customers with menu questions and options                            |
+| `*`  | Admin         | Set parameters for reservations  | Ensure proper handling based on table/group size and special requests      |
+| `*`  | Admin         | View reservation count by time  | Track reservations over different time periods for business insights       |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `GastroBook` and the **Actor** is the `admin`, unless specified otherwise)
 
-**Use case: Delete a person**
+### **Use case: Add a reservation**
 
-**MSS**
+**MSS** (Main Success Scenario)
+1. User provides reservation details (name, table number, timeslot, special requests).
+2. System confirms if the reservation slot is available.
+3. User is prompted to confirm the reservation.
+4. System adds the reservation to the schedule.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
+* 2a. The provided timeslot is not available.
+    * 2a1. System shows available slots.
+    * 2a2. User selects a different timeslot.
+    * Use case resumes from step 3.
 
-* 2a. The list is empty.
+---
 
-  Use case ends.
+### **Use case: Delete a reservation**
 
-* 3a. The given index is invalid.
+**MSS**
+1. User selects the reservation they want to cancel.
+2. System asks for confirmation to delete the reservation.
+3. User confirms the cancellation.
+4. System removes the reservation from the schedule.
 
-    * 3a1. AddressBook shows an error message.
+   Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
+* 1a. The reservation does not exist.
+    * 1a1. System displays an error message.
+    * Use case resumes at step 1.
+
+---
+
+### **Use case: Mark a reservation as paid**
+
+**MSS**
+1. User finds the reservation they want to mark.
+2. User selects the "mark as paid" option.
+3. System updates the reservation's payment status to "paid".
+
+   Use case ends.
+
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. **Platform Compatibility**: The application must run on any mainstream OS (Windows, Linux, macOS) with Java 17 or above.
+2. **Performance**: The system should handle up to 1000 reservations without noticeable performance degradation during typical usage.
+3. **Usability**: A user with above-average typing speed for regular English text should be able to accomplish key tasks faster using the command-line interface than a GUI-based app.
+4. **Response Time**: The system should respond to commands within 1 second for typical tasks such as adding, editing, or deleting reservations.
 
 *{More to be added}*
 
@@ -327,6 +378,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Reservation ID**: A unique identifier (e.g., R1) assigned to each reservation.
+* **CLI (Command-Line Interface)**: A text-based interface that allows users to interact with the system using typed commands.
+* **Timeslot**: The reserved period for a customer's table reservation, usually in 1-hour or 2-hour increments.
+* **Special Request**: Specific requirements or preferences made by the customer for their reservation (e.g., dietary needs, specific table preferences).
+* **Max Reservation Hour**: The maximum duration for a reservation, typically set to 2 hours.
+* **Valid Command**: A command that the system recognizes and processes correctly.
+* **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
+* **Reservation Duration**: The time for which a reservation is valid, either 1 hour or 2 hours.
 
 --------------------------------------------------------------------------------------------------------------------
 
