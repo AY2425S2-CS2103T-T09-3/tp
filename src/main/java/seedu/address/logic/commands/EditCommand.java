@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -18,17 +17,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.swing.text.html.Option;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.reservation.Address;
 import seedu.address.model.reservation.Duration;
-import seedu.address.model.reservation.Email;
 import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;

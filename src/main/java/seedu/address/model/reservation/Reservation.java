@@ -56,21 +56,33 @@ public class Reservation {
         return phone;
     }
 
-    public StartDate getDate() {return date;}
+    public StartDate getDate() {
+        return date;
+    }
 
-    public StartTime getTime() {return time;}
+    public StartTime getTime() {
+        return time;
+    }
 
-    public Duration getDuration() { return duration;}
+    public Duration getDuration() {
+        return duration;
+    }
 
-    public Pax getPax() {return pax;}
+    public Pax getPax() {
+        return pax;
+    }
 
-    public Table getTable() {return table;}
+    public Table getTable() {
+        return table;
+    }
 
     public Remark getRemark() {
         return remark;
     }
 
-    public Identification getId() {return id;}
+    public Identification getId() {
+        return id;
+    }
 
 
     /**

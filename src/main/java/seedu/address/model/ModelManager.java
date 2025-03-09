@@ -98,6 +98,13 @@ public class ModelManager implements Model {
         addressBook.removeReservation(target);
     }
 
+    /**
+     * Adds a reservation to the address book.
+     * The reservation will be stored and the filtered reservation list will be updated
+     * to include all reservations.
+     *
+     * @param person The reservation to be added. Must not be null.
+     */
     public void addReservation(Reservation person) {
         addressBook.addReservation(person);
         updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);

@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.reservation.Address;
 import seedu.address.model.reservation.Duration;
-import seedu.address.model.reservation.Email;
 import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
