@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.reservation.Person;
+import seedu.address.model.reservation.Reservation;
 
 /**
  * Container for user visible messages.
@@ -34,17 +34,27 @@ public class Messages {
     /**
      * Formats the {@code person} for display to the user.
      */
-    public static String format(Person person) {
+    public static String format(Reservation reservation) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(reservation.getName())
                 .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
+                .append(reservation.getPhone())
+                .append("; Date: ")
+                .append(reservation.getDate())
+                .append("; Time: ")
+                .append(reservation.getTime())
+                .append("; Duration: ")
+                .append(reservation.getDuration())
+                .append("; Pax: ")
+                .append(reservation.getPax())
+                .append("; Table: ")
+                .append(reservation.getTable())
                 .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+        reservation.getTags().forEach(builder::append);
+        builder.append("; Remark: ")
+                .append(reservation.getRemark())
+                .append("; ID: ")
+                .append(reservation.getId());
         return builder.toString();
     }
 

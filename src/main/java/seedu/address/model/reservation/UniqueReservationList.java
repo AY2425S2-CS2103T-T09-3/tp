@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.reservation.exceptions.DuplicatePersonException;
-import seedu.address.model.reservation.exceptions.PersonNotFoundException;
+import seedu.address.model.reservation.exceptions.DuplicateReservationException;
+import seedu.address.model.reservation.exceptions.ReservationNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -20,30 +20,30 @@ import seedu.address.model.reservation.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Reservation#isSameReservation(Reservation)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniqueReservationList implements Iterable<Reservation> {
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList =
+    private final ObservableList<Reservation> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Reservation> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(Person toCheck) {
+    public boolean contains(Reservation toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameReservation);
     }
 
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
-    public void add(Person toAdd) {
+    public void add(Reservation toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateReservationException();
         }
         internalList.add(toAdd);
     }
@@ -53,33 +53,33 @@ public class UniquePersonList implements Iterable<Person> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setReservation(Reservation target, Reservation editedReservation) {
+        requireAllNonNull(target, editedReservation);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ReservationNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameReservation(editedReservation) && contains(editedReservation)) {
+            throw new DuplicateReservationException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedReservation);
     }
 
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Reservation toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ReservationNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setReservations(UniqueReservationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,24 +88,24 @@ public class UniquePersonList implements Iterable<Person> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
+    public void setReservations(List<Reservation> reservations) {
+        requireAllNonNull(reservations);
+        if (!reservationsAreUnique(reservations)) {
+            throw new DuplicateReservationException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(reservations);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Person> asUnmodifiableObservableList() {
+    public ObservableList<Reservation> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Reservation> iterator() {
         return internalList.iterator();
     }
 
@@ -116,12 +116,12 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueReservationList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
-        return internalList.equals(otherUniquePersonList.internalList);
+        UniqueReservationList otherUniqueReservationList = (UniqueReservationList) other;
+        return internalList.equals(otherUniqueReservationList.internalList);
     }
 
     @Override
@@ -137,10 +137,10 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Person> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+    private boolean reservationsAreUnique(List<Reservation> reservations) {
+        for (int i = 0; i < reservations.size() - 1; i++) {
+            for (int j = i + 1; j < reservations.size(); j++) {
+                if (reservations.get(i).isSameReservation(reservations.get(j))) {
                     return false;
                 }
             }

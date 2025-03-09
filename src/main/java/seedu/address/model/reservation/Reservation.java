@@ -58,9 +58,9 @@ public class Reservation {
 
     public StartDate getDate() {return date;}
 
-    public StartTime time() {return time;}
+    public StartTime getTime() {return time;}
 
-    public Duration duration() { return duration;}
+    public Duration getDuration() { return duration;}
 
     public Pax getPax() {return pax;}
 
