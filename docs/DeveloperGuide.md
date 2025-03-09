@@ -417,7 +417,7 @@ Use case ends.
 **MSS**
 1. User finds the reservation by name.
 2. System displays all reservations that are made under the queried name.
-<The following steps can be included as a seperate use case that can be used for other find functions> 
+<The following steps can be included as a seperate use case that can be used for other find functions>
 3. User selects relevant reservation.
 4. System displays all relevant information on the reservation.
 

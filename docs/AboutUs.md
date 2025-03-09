@@ -27,7 +27,7 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 * Role: Project Advisor
 
-### Weng Sheng 
+### Weng Sheng
 
 <img src="images/cvincent0907.png" width="200px">
 
@@ -42,7 +42,7 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 <img src="images/caroline1233456.png" width="200px">
 
-[[github](http://github.com/caroline1233456)] 
+[[github](http://github.com/caroline1233456)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
