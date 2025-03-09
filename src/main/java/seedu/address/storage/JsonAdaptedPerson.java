@@ -14,13 +14,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.reservation.Address;
 import seedu.address.model.reservation.Email;
 import seedu.address.model.reservation.Name;
-import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.Reservation;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Reservation}.
  */
 class JsonAdaptedPerson {
 

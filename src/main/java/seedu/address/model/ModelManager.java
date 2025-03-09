@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.reservation.Person;
+import seedu.address.model.reservation.Reservation;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Reservation> filteredReservations;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredReservations = new FilteredList<>(this.addressBook.getReservationList());
     }
 
     public ModelManager() {
@@ -88,27 +88,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public boolean hasReservation(Reservation person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return addressBook.hasReservation(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteReservation(Reservation target) {
+        addressBook.removeReservation(target);
+    }
+
+    public void addReservation(Reservation person) {
+        addressBook.addReservation(person);
+        updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
+    public void setReservation(Reservation target, Reservation editedReservation) {
+        requireAllNonNull(target, editedReservation);
 
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setReservation(target, editedReservation);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,14 +117,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Reservation> getFilteredReservationList() {
+        return filteredReservations;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredReservationList(Predicate<Reservation> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredReservations.setPredicate(predicate);
     }
 
     @Override
@@ -142,7 +141,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredReservations.equals(otherModelManager.filteredReservations);
     }
 
 }
