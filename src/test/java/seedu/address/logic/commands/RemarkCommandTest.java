@@ -19,8 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
+import seedu.address.model.reservation.Person;
+import seedu.address.model.reservation.Remark;
 import seedu.address.testutil.PersonBuilder;
 
 /**
