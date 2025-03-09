@@ -28,8 +28,6 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
-    private final String email;
-    private final String address;
     private final String remark;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -42,8 +40,6 @@ class JsonAdaptedPerson {
                              @JsonProperty("remark") String remark, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
         this.remark = remark;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -53,11 +49,9 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Reservation source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
         remark = source.getRemark().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -69,7 +63,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Reservation toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
@@ -91,29 +85,15 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+
+        return null;
+        //return new Reservation(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
 
 }
