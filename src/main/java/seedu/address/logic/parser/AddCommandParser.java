@@ -1,22 +1,31 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.reservation.Duration;
+import seedu.address.model.reservation.Identification;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Pax;
+import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.StartDate;
+import seedu.address.model.reservation.StartTime;
+import seedu.address.model.reservation.Table;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,23 +40,32 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
+                        PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG, PREFIX_ID);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
+                PREFIX_PAX, PREFIX_TABLE, PREFIX_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
+                PREFIX_PAX, PREFIX_TABLE, PREFIX_ID);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        StartDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        StartTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
+        Pax pax = ParserUtil.parsePax(argMultimap.getValue(PREFIX_PAX).get());
+        Table table = ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get());
+        Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Identification id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Reservation reservation = new Reservation(name, phone, date, time, duration, pax, table, remark, tagList, id);
 
-        return new AddCommand(person);
+        return new AddCommand(reservation);
     }
 
     /**

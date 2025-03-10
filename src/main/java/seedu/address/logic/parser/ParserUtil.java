@@ -9,10 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.reservation.Duration;
+import seedu.address.model.reservation.Identification;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Pax;
+import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.StartDate;
+import seedu.address.model.reservation.StartTime;
+import seedu.address.model.reservation.Table;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,33 +70,93 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String date} into an {@code StartDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static StartDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!StartDate.isValidDate(trimmedDate)) {
+            throw new ParseException(StartDate.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new StartDate(trimmedDate);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String time} into an {@code StartTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code time} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static StartTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!StartTime.isValidTime(trimmedTime)) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new StartTime(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String duration} into an {@code Duration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code duration} is invalid.
+     */
+    public static Duration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!Duration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+        }
+        return new Duration(trimmedDuration);
+    }
+
+    /**
+     * Parses a {@code String pax} into an {@code Pax}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code pax} is invalid.
+     */
+    public static Pax parsePax(String pax) throws ParseException {
+        requireNonNull(pax);
+        String trimmedPax = pax.trim();
+        if (!Pax.isValidPax(trimmedPax)) {
+            throw new ParseException(Pax.MESSAGE_CONSTRAINTS);
+        }
+        return new Pax(trimmedPax);
+    }
+
+    /**
+     * Parses a {@code String table} into an {@code Table}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code table} is invalid.
+     */
+    public static Table parseTable(String table) throws ParseException {
+        requireNonNull(table);
+        String trimmedTable = table.trim();
+        if (!Table.isValidTable(trimmedTable)) {
+            throw new ParseException(Table.MESSAGE_CONSTRAINTS);
+        }
+        return new Table(trimmedTable);
+    }
+
+    /**
+     * Parses a {@code String id} into an {@code Identification}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static Identification parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!Identification.isValidId(trimmedId)) {
+            throw new ParseException(Identification.MESSAGE_CONSTRAINTS);
+        }
+        return new Identification(trimmedId);
     }
 
     /**
