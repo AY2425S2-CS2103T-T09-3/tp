@@ -87,6 +87,9 @@ public class EditCommand extends Command {
         }
 
         Reservation reservationToEdit = lastShownList.get(index.getZeroBased());
+
+        updateReservationID(reservationToEdit);
+
         Reservation editedReservation = createEditedReservation(reservationToEdit, editReservationDescriptor);
 
         if (!reservationToEdit.isSameReservation(editedReservation) && model.hasReservation(editedReservation)) {
@@ -96,6 +99,33 @@ public class EditCommand extends Command {
         model.setReservation(reservationToEdit, editedReservation);
         model.updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation)));
+    }
+
+    private void updateReservationID(Reservation reservationToEdit) {
+        // Update the Reservation ID accordingly after edit
+        if (editReservationDescriptor.getPhone().isPresent() && editReservationDescriptor.getDate().isPresent()) {
+            String newDate = editReservationDescriptor.getDate()
+                    .map(d -> d.toWithoutSlashString()).orElse("");
+            String newLastFourPhoneDigits = editReservationDescriptor.getPhone()
+                    .map(p -> p.getLastFourDigitsString()).orElse("");
+            String newId = newDate + newLastFourPhoneDigits;
+            editReservationDescriptor.setId(new Identification(newId));
+
+        }else if (editReservationDescriptor.getPhone().isPresent()) {
+            String oldDate = reservationToEdit.getDate().toWithoutSlashString();
+            String newLastFourPhoneDigits = editReservationDescriptor.getPhone()
+                    .map(p -> p.getLastFourDigitsString()).orElse("");
+            String newId = oldDate + newLastFourPhoneDigits;
+            editReservationDescriptor.setId(new Identification(newId));
+
+        } else if (editReservationDescriptor.getDate().isPresent()) {
+            String newDate = editReservationDescriptor.getDate()
+                    .map(d -> d.toWithoutSlashString()).orElse("");
+            String oldLastFourPhoneDigits = reservationToEdit.getPhone()
+                    .getLastFourDigitsString();
+            String newId = newDate + oldLastFourPhoneDigits;
+            editReservationDescriptor.setId(new Identification(newId));
+        }
     }
 
     /**
@@ -115,7 +145,7 @@ public class EditCommand extends Command {
         Table updatedTable = editReservationDescriptor.getTable().orElse(reservationToEdit.getTable());
         Remark updatedRemark = reservationToEdit.getRemark();
         Set<Tag> updatedTags = editReservationDescriptor.getTags().orElse(reservationToEdit.getTags());
-        Identification id = reservationToEdit.getId();
+        Identification id = editReservationDescriptor.getId().orElse(reservationToEdit.getId());
 
         return new Reservation(updatedName, updatedPhone, updatedDate, updatedTime, updatedDuration, updatedPax,
                 updatedTable, updatedRemark, updatedTags, id);

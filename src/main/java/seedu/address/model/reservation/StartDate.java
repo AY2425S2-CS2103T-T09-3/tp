@@ -41,6 +41,10 @@ public class StartDate {
         return value;
     }
 
+    public String toWithoutSlashString() {
+        return value.replace("/", "");
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
