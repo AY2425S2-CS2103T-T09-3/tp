@@ -66,7 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Identification id = new Identification(date.value.replace("/", "")
                 + phone.getLastFourDigitsString());
 
-        Reservation reservation = new Reservation(name, phone, date, time, duration, pax, table, remark, tagList, id);
+        Reservation reservation = new Reservation(name, phone, date, time, duration, pax, table, remark, tagList, id, false);
         return new AddCommand(reservation);
     }
 

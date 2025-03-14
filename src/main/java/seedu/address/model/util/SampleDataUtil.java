@@ -29,7 +29,7 @@ public class SampleDataUtil {
         return new Reservation[] {
             new Reservation(new Name("Alex Yeoh"), new Phone("87438807"), new StartDate("01/03/2025"),
                     new StartTime("1800"), new Duration("2"), new Pax("2"), new Table("A1"), EMPTY_REMARK,
-                getTagSet("friends"), new Identification("0001"))
+                getTagSet("friends"), new Identification("0001"), false)
                 /*
             new Reservation(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,

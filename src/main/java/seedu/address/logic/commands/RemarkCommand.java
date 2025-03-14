@@ -56,7 +56,7 @@ public class RemarkCommand extends Command {
         Reservation editedReservation = new Reservation(reservationToEdit.getName(), reservationToEdit.getPhone(),
                 reservationToEdit.getDate(), reservationToEdit.getTime(), reservationToEdit.getDuration(),
                 reservationToEdit.getPax(), reservationToEdit.getTable(), remark, reservationToEdit.getTags(),
-                reservationToEdit.getId());
+                reservationToEdit.getId(), false);
 
         model.setReservation(reservationToEdit, editedReservation);
         model.updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);

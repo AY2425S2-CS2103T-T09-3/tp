@@ -170,6 +170,6 @@ class JsonAdaptedReservation {
         final Identification modelId = new Identification(id);
 
         return new Reservation(modelName, modelPhone, modelDate, modelTime, modelDuration, modelPax, modelTable,
-                modelRemark, modelTags, modelId);
+                modelRemark, modelTags, modelId, false);
     }
 }

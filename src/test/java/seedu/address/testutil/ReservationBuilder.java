@@ -155,7 +155,7 @@ public class ReservationBuilder {
     }
 
     public Reservation build() {
-        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, id);
+        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, id, false);
     }
 
 }

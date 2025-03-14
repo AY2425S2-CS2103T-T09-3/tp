@@ -30,11 +30,13 @@ public class Reservation {
     private final Set<Tag> tags = new HashSet<>();
     private final Identification id;
 
+    private final boolean isPaid;
+
     /**
      * Every field must be present and not null.
      */
     public Reservation(Name name, Phone phone, StartDate date, StartTime time,
-                       Duration duration, Pax pax, Table table, Remark remark, Set<Tag> tags, Identification id) {
+                       Duration duration, Pax pax, Table table, Remark remark, Set<Tag> tags, Identification id, boolean isPaid) {
         requireAllNonNull(name, phone, date, time, duration, pax, table);
         this.name = name;
         this.phone = phone;
@@ -46,6 +48,7 @@ public class Reservation {
         this.remark = remark;
         this.tags.addAll(tags);
         this.id = id;
+        this.isPaid = isPaid;
     }
 
     public Name getName() {
@@ -82,6 +85,10 @@ public class Reservation {
 
     public Identification getId() {
         return id;
+    }
+
+    public boolean getIsPaid() {
+        return isPaid;
     }
 
     /**

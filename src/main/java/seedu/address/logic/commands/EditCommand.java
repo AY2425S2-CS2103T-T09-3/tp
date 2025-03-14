@@ -118,7 +118,7 @@ public class EditCommand extends Command {
         Identification id = reservationToEdit.getId();
 
         return new Reservation(updatedName, updatedPhone, updatedDate, updatedTime, updatedDuration, updatedPax,
-                updatedTable, updatedRemark, updatedTags, id);
+                updatedTable, updatedRemark, updatedTags, id, false);
     }
 
     @Override
