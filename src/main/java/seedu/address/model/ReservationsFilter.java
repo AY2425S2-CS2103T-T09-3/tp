@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.reservation.Reservation;
-
+import seedu.address.model.tag.Tag;
 /**
  * Provides utility methods for filtering reservations by date.
  */
@@ -42,6 +42,7 @@ public class ReservationsFilter {
         return tomorrowPredicate;
     }
 
+
     /**
      * Returns a predicate that filters reservations scheduled for tomorrow or today.
      *
@@ -61,6 +62,37 @@ public class ReservationsFilter {
                 reservation.getDate().value.equals(todayDate) || reservation.getDate().value.equals(tomorrowDate);
 
         return todayOrTomorrowPredicate;
+    }
+    /**
+     * Returns a predicate that filters reservations previously.
+     *
+     *
+     * @return Predicate for tomorrow or today reservations
+     */
+    public static Predicate<Reservation> filterForPrevious() {
+        LocalDate today = LocalDate.now();
+        LocalDate tomorrow = today.plusDays(1);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String todayDate = today.format(formatter);
+        String tomorrowDate = tomorrow.format(formatter);
+
+        // Predicate to check if the reservation is before today
+        Predicate<Reservation> previousPredicate = reservation ->
+                !(reservation.getDate().value.equals(todayDate) || reservation.getDate().value.equals(tomorrowDate));
+
+        return previousPredicate;
+    }
+    /**
+     * Returns a predicate that filters reservations made by regulars.
+     *
+     * @param reservationsList The list of reservations to filter
+     * @return Predicate for regulars' reservation
+     */
+    public static Predicate<Reservation> filterByRegular(FilteredList<Reservation> reservationsList) {
+        //filter by regulars
+        Predicate<Reservation> regularPredicate = reservation -> reservation.getTags().contains(new Tag("regular"));
+        return regularPredicate;
     }
 
 }

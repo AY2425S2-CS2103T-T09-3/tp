@@ -86,7 +86,8 @@ public interface Model {
 
     void filterReservationsForTomorrow(Predicate<Reservation> predicate);
 
-
+    void filterReservationsByRegular(Predicate<Reservation> predicate);
+    void filterPreviousReservations(Predicate<Reservation> predicate);
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

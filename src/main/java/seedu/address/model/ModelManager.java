@@ -148,7 +148,18 @@ public class ModelManager implements Model {
         filteredReservations.setPredicate(tomorrowPredicate);
     }
 
+    @Override
+    public void filterReservationsByRegular(Predicate<Reservation> predicate) {
+        requireNonNull(predicate);
+        Predicate<Reservation> regularPredicate = ReservationsFilter.filterByRegular(filteredReservations);
+        filteredReservations.setPredicate(regularPredicate);
+    }
+    @Override
+    public void filterPreviousReservations(Predicate<Reservation> predicate) {
 
+        Predicate<Reservation> previousPredicate = ReservationsFilter.filterForPrevious();
+        filteredReservations.setPredicate(previousPredicate);
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
