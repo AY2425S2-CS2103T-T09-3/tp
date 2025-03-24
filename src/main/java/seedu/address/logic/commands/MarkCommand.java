@@ -16,9 +16,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the reservation as paid "
             + "at the identification used in the reservation listing.\n"
-            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
-            + "+ [time of reservation in HHMM format])"
+            + "Parameters: ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie:xxxx)]).\n"
             + "Example: " + COMMAND_WORD + " 180320251234 ";
 
     public static final String MESSAGE_MARK_RESERVATION_SUCCESS = "Successfully marks the reservation";

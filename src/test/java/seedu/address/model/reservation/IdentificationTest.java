@@ -18,22 +18,20 @@ public class IdentificationTest {
         LocalDate tomorrow = today.plusDays(1);
 
         // Test for both valid StartDate cases
-        testIdentificationForDate(today.format(FORMATTER), "91234567", "1200");
-        testIdentificationForDate(tomorrow.format(FORMATTER), "87654321", "1400");
+        testIdentificationForDate(today.format(FORMATTER), "91234567");
+        testIdentificationForDate(tomorrow.format(FORMATTER), "87654321");
     }
 
-    private void testIdentificationForDate(String validDate, String phoneNumber, String validTime) {
+    private void testIdentificationForDate(String validDate, String phoneNumber) {
         // Given a valid StartDate and valid Phone
         StartDate date = new StartDate(validDate);
         Phone phone = new Phone(phoneNumber);
-        StartTime time = new StartTime(validTime);
 
         // Expected ID should be date without slashes + last 4 digits of phone
-        String expectedId = validDate.replace("/", "") + phone.getLastFourDigitsString()
-                + time.value;
+        String expectedId = validDate.replace("/", "") + phone.getLastFourDigitsString();
 
         // Execute the logic that should be tested
-        Identification id = new Identification(date, phone, time);
+        Identification id = new Identification(date, phone);
 
         // Assert that the generated ID is correct
         assertNotNull(id);

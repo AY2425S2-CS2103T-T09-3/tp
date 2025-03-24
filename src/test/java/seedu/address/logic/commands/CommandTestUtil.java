@@ -85,11 +85,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditReservationDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).withTime(VALID_TIME_AMY)
                 .withDuration(VALID_DURATION_AMY).withPax(VALID_PAX_AMY).withTable(VALID_TABLE_AMY)
-                .withTags(VALID_TAG_FRIEND).withId(VALID_DATE_AMY, VALID_PHONE_AMY, VALID_TIME_AMY).build();
+                .withTags(VALID_TAG_FRIEND).withId(VALID_DATE_AMY, VALID_PHONE_BOB).build();
         DESC_BOB = new EditReservationDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withDate(VALID_DATE_BOB).withTime(VALID_TIME_BOB)
                 .withDuration(VALID_DURATION_BOB).withPax(VALID_PAX_BOB).withTable(VALID_TABLE_BOB)
-                .withTags(VALID_TAG_FRIEND).withId(VALID_DATE_BOB, VALID_PHONE_BOB, VALID_TIME_BOB).build();
+                .withTags(VALID_TAG_FRIEND).withId(VALID_DATE_BOB, VALID_PHONE_BOB).build();
     }
 
     /**

@@ -171,7 +171,7 @@ class JsonAdaptedReservation {
         if (!Identification.isValidId(id)) {
             throw new IllegalValueException(Identification.MESSAGE_CONSTRAINTS);
         }
-        final Identification modelId = new Identification(new StartDate(date), new Phone(phone), new StartTime(time));
+        final Identification modelId = new Identification(new StartDate(date), new Phone(phone));
 
 
 

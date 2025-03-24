@@ -45,8 +45,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed reservation list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
-            + "+ [time of reservation in HHMM format])"
+            + "+ [last 4 digits of customer phone number (ie:xxxx)])"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_DATE + "DATE] "
@@ -110,7 +109,7 @@ public class EditCommand extends Command {
         Table updatedTable = editReservationDescriptor.getTable().orElse(reservationToEdit.getTable());
         Remark updatedRemark = reservationToEdit.getRemark();
         Set<Tag> updatedTags = editReservationDescriptor.getTags().orElse(reservationToEdit.getTags());
-        Identification id = new Identification(updatedDate, updatedPhone, updatedTime);
+        Identification id = new Identification(updatedDate, updatedPhone);
         Boolean isPaid = reservationToEdit.getIsPaid();
 
         return new Reservation(updatedName, updatedPhone, updatedDate, updatedTime, updatedDuration, updatedPax,

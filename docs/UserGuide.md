@@ -77,7 +77,7 @@ Edits the reservation with the specified `RESERVATION_ID`.
 
 Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
 
-* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
+* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number (e.g., 180320251234 for a booking on March 18, 2025, with phone ending in 1234).
 * NAME: Name of the person making the reservation (string)
 * PHONE_NUMBER: Contact number of the person making the reservation
 * DATE: Date of reservation in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
@@ -86,7 +86,6 @@ Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME]
 * NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
 * TABLE_NUMBER: Assigned table number/code for the reservation
 * TAG: tags to categorize the reservation (e.g., regular, event, birthday)
-* REMARK: Additional information that is tied to the reservation
 
 
 Examples:
@@ -130,10 +129,10 @@ Deletes a specific reservation from GastroBook.
 Format: `delete [RESERVATION_ID]`
 
 * Deletes the reservation with the specified `RESERVATION_ID`.
-* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
+* The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
 
 Examples:
-* `delete 1703202593441200` deletes the reservation with ID 1703202593441200.
+* `delete 170320259344` deletes the reservation with ID 170320259344.
 
 ### Marking a reservation as paid : `mark`
 
@@ -142,10 +141,10 @@ Marks a specific reservation as paid.
 Format: `mark [RESERVATION_ID]`
 
 * Marks the reservation with the specified `RESERVATION_ID` as paid.
-* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
+* The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
 
 Examples:
-* `mark 1703202593441200` marks the reservation with ID 1703202593441200 as paid.
+* `mark 170320259344` marks the reservation with ID 170320259344 as paid.
 
 ### Unmarking a reservation as paid : `unmark`
 
@@ -154,11 +153,11 @@ Marks a specific reservation as unpaid.
 Format: `unmark [RESERVATION_ID]`
 
 * Marks the reservation with the specified `RESERVATION_ID` as unpaid.
-* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
+* The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
 
 
 Examples:
-* `unmark 1703202593441200` marks the reservation with ID 1703202593441200 as unpaid.
+* `unmark 170320259344` marks the reservation with ID 170320259344 as unpaid.
 
 ### Exiting the program : `exit`
 
@@ -180,17 +179,17 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                                   |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                    |
-| **Edit**          | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 1803202512341200 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
-| **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 1703202593441200`                                                                                                                                                                                                        |
-| **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            |
-| **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 1703202593441200`                                                                                                                                                                                                        |
-| **Find by name**  | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            | |
-| **List all**      | `list`                                                                                                                                                                                                                                                             |
-| **List today**    | `listrt`                                                                                                                                                                                                                                                           |
-| **List tomorrow** | `listrn`                                                                                                                                                                                                                                                           |
-| **Help**          | `help`                                                                                                                                                                                                                                                             |
-| **Exit**          | `exit`                                                                                                                                                                                                                                                             |
+| Action            | Format, Examples                                                                                                                                                                                                                                               |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                |
+| **Edit**          | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 180320251234 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
+| **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 170320259344`                                                                                                                                                                                                        |
+| **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 170320259344`                                                                                                                                                                                                            |
+| **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344`                                                                                                                                                                                                        |
+| **Find by name**  | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                        | |
+| **List all**      | `list`                                                                                                                                                                                                                                                         |
+| **List today**    | `listrt`                                                                                                                                                                                                                                                       |
+| **List tomorrow** | `listrn`                                                                                                                                                                                                                                                       |
+| **Help**          | `help`                                                                                                                                                                                                                                                         |
+| **Exit**          | `exit`                                                                                                                                                                                                                                                         |
 |

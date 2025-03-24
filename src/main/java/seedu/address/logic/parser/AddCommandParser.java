@@ -64,7 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         // Make use of current date ddMMyyyy and last 4 digits of phone and current reservation count
         // to form a unique key id
-        Identification id = new Identification(date, phone, time);
+        Identification id = new Identification(date, phone);
 
         Reservation reservation = new Reservation(name, phone, date, time, duration, pax,
                 table, remark, tagList, id, false);

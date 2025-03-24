@@ -57,7 +57,7 @@ public class AddCommandParserTest {
                         new Table("A10"),
                         new Remark(""),
                         new HashSet<>(),
-                        new Identification(new StartDate(validDate), new Phone("91234567"), new StartTime("1200")),
+                        new Identification(new StartDate(validDate), new Phone("91234567")),
                         false)
         );
 
