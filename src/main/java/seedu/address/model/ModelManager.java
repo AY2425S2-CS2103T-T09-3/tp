@@ -150,7 +150,6 @@ public class ModelManager implements Model {
      */
     @Override
     public void updatePersonsListAfterEdit(Reservation oldReservation, Reservation newReservation) {
-
         personsListManager.updatePersonsListAfterEdit(oldReservation, newReservation);
     }
 

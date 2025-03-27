@@ -40,8 +40,7 @@ public class PersonsListManager {
                 Person oldPerson = null;
 
                 for (Person person : currentPersons) {
-
-                    // Match by phone number
+                    //match by phone number
                     if (person.getPhone().value.equals(oldPhone.value)) {
                         oldPerson = person;
                         break;

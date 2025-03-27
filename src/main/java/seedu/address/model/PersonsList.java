@@ -221,7 +221,7 @@ public class PersonsList {
     }
 
     /**
-     * Saves the persons list to file.
+     * Saves the current persons list to file.
      */
     public void savePersonsToFile() {
         try {
@@ -289,9 +289,8 @@ public class PersonsList {
                     // Convert the map values to list
                     this.personsList = new ArrayList<>(phoneToPersonMap.values());
 
-                    logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing "
-                            + "highest counter values");
-                  
+                    logger.info("Loaded " + personsList.size()
+                            + " unique persons from file, prioritizing highest counter values");
                     for (Person p : personsList) {
                         logger.info("  Loaded: " + p.getName().fullName
                                 + ", phone: " + p.getPhone().value

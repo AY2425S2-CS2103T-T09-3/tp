@@ -112,12 +112,11 @@ Format: `listrn`
 
 ### Finding reservations by name: `findn`
 
-Finds reservations by the specified name(s).
+Finds reservations by name.
 
 Format: `findn [NAME]`
 
 * The search is case-insensitive. e.g., `findn john doe` will match `John Doe`
-* Only reservations scheduled for today or tomorrow are considered.
 
 Examples:
 * `findn John` returns all reservations made by John.
@@ -126,7 +125,7 @@ Examples:
 
 ### Finding reservations by phone number: `findp`
 
-Finds reservations by the specified phone number(s).
+Finds reservations by phone number.
 
 Format: `findp [PHONE_NUMBER]`
 
@@ -135,21 +134,6 @@ Format: `findp [PHONE_NUMBER]`
 Examples:
 * `findp 98765432` returns all reservations made by the person with phone number 98765432.
 * `findp 91234567 98765432` returns all reservations made by the people with phone numbers 91234567 and 98765432.
-* Only reservations scheduled for today or tomorrow are considered.
-
-### Finding reservations by time: `findt`
-
-Finds reservations that are ongoing at the specified time.
-
-Format: `findt [TIME]`
-
-* TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM).
-* Only reservations scheduled for today are considered.
-* A reservation is deemed ongoing if its start time is at or before the specified time and its end time (computed as start time plus duration) is after the specified time.
-* Reservations that end exactly at the specified time are not included.
-
-Examples:
-* `findt 1400` returns all reservations scheduled for today ongoing at 2:00 PM (e.g., a reservation from 1:00 PM to 3:00 PM or 2:00 PM to 4:00 PM), but excludes reservations that end at 2:00 PM (e.g., a reservation from 1:00 PM to 2:00 PM).
 
 ### Deleting a reservation : `delete`
 
@@ -217,7 +201,6 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **Unmark**               | `unmark RESERVATION_ID`<br> e.g., `unmark 1703202593441200`                                                                                                                                                                                                        |
 | **Find by name**         | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            | |
 | **Find by phone number** | `findp PHONE_NUMBER`<br> e.g., `findp 91234567`                                                                                                                                                                                                                    |
-| **Find by time**         | `findt TIME`<br> e.g., `findt 1400`                                                                                                                                                                                                                                |
 | **List all**             | `list`                                                                                                                                                                                                                                                             |
 | **List today**           | `listrt`                                                                                                                                                                                                                                                           |
 | **List tomorrow**        | `listrn`                                                                                                                                                                                                                                                           |

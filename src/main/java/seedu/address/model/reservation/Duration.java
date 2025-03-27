@@ -33,13 +33,6 @@ public class Duration {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns this Duration's value (in hours) as minutes.
-     */
-    public int toMinutes() {
-        return Integer.parseInt(value) * 60;
-    }
-
     @Override
     public String toString() {
         return value;
