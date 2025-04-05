@@ -23,7 +23,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalReservations.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalReservations.getTypicalGastroBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 

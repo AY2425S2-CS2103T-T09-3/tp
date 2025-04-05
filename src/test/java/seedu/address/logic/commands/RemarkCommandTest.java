@@ -1,114 +1,102 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.Messages;
+import seedu.address.model.GastroBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.reservation.Identification;
+import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.StartTime;
+import seedu.address.testutil.ReservationBuilder;
+import seedu.address.testutil.TypicalReservations;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
  */
 public class RemarkCommandTest {
-    /*
 
-    private static final String REMARK_STUB = "Some remark";
-
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    // Create a model using typical reservations.
+    private Model model = new ModelManager(new GastroBook(TypicalReservations.getTypicalGastroBook()), new UserPrefs());
 
     @Test
-    public void execute_addRemarkUnfilteredList_success() {
-        Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new ReservationBuilder(firstReservation).withRemark(REMARK_STUB).build();
+    public void execute_addRemark_success() throws Exception {
+        Reservation originalReservation = model.getFilteredReservationList().get(0);
+        Identification id = originalReservation.getId();
+        Remark newRemark = new Remark(CommandTestUtil.VALID_REMARK_AMY);
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(editedReservation.getRemark().value));
+        // Create an edited reservation with the updated remark
+        Reservation editedReservation = new ReservationBuilder(originalReservation).withRemark(newRemark.value).build();
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedReservation);
+        RemarkCommand remarkCommand = new RemarkCommand(id, newRemark);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                Messages.format(editedReservation));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setReservation(firstReservation, editedReservation);
+        Model expectedModel = new ModelManager(new GastroBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setReservation(originalReservation, editedReservation);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
-        Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new ReservationBuilder(firstReservation).withRemark("").build();
+    public void execute_deleteRemark_success() throws Exception {
+        Reservation originalReservation = model.getFilteredReservationList().get(0);
+        Identification id = originalReservation.getId();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(editedReservation.getRemark().toString()));
+        // Created an edited reservation with an empty remark (ie delete remark)
+        Remark newRemark = new Remark("");
+        Reservation editedReservation = new ReservationBuilder(originalReservation).withRemark("").build();
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedReservation);
+        RemarkCommand remarkCommand = new RemarkCommand(id, newRemark);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS,
+                Messages.format(editedReservation));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setReservation(firstReservation, editedReservation);
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new ReservationBuilder(model.getFilteredReservationList()
-                .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark(REMARK_STUB).build();
-
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(editedReservation.getRemark().value));
-
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedReservation);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setReservation(firstReservation, editedReservation);
+        Model expectedModel = new ModelManager(new GastroBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setReservation(originalReservation, editedReservation);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReservationList().size() + 1);
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+    public void execute_invalidId_throwsCommandException() {
+        Reservation originalReservation = model.getFilteredReservationList().get(0);
+        Identification invalidId = new Identification(originalReservation.getDate(), originalReservation.getPhone(),
+                new StartTime("2359"));
+        Remark newRemark = new Remark("Dummy remark");
+        RemarkCommand remarkCommand = new RemarkCommand(invalidId, newRemark);
 
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
-    }
-
-
-    @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getReservationList().size());
-
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
-
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
+        String expectedMessage = "Input reservation id does not exist.";
+        assertCommandFailure(remarkCommand, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(VALID_REMARK_AMY));
+        Reservation originalReservation = model.getFilteredReservationList().get(0);
+        Identification id = originalReservation.getId();
+        Remark remarkAmy = new Remark("Amy's remark");
+        Remark remarkBob = new Remark("Bob's remark");
+
+        RemarkCommand command1 = new RemarkCommand(id, remarkAmy);
+        RemarkCommand command2 = new RemarkCommand(id, remarkAmy);
+        RemarkCommand command3 = new RemarkCommand(id, remarkBob);
 
         // same values -> returns true
-        RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(VALID_REMARK_AMY));
-        assertTrue(standardCommand.equals(commandWithSameValues));
-
+        assertTrue(command1.equals(command2));
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
-
+        assertTrue(command1.equals(command1));
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
-
-        // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
-
-        // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_PERSON,
-                new Remark(VALID_REMARK_AMY))));
-
+        assertFalse(command1.equals(null));
+        // different type -> returns false
+        assertFalse(command1.equals(new ClearCommand()));
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(VALID_REMARK_BOB))));
+        assertFalse(command1.equals(command3));
     }
-
-     */
 }

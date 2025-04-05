@@ -48,8 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_PAX_BOB = "4";
     public static final String VALID_TABLE_AMY = "A1";
     public static final String VALID_TABLE_BOB = "B1";
-    public static final String VALID_REMARK_AMY = "Like skiing.";
-    public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
+    public static final String VALID_REMARK_AMY = "Likes cheese.";
+    public static final String VALID_REMARK_BOB = "Favourite meat: chicken";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_ID_AMY = VALID_DATE_AMY.replace("/", "")

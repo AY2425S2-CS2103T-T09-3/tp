@@ -152,9 +152,9 @@ public class TypicalReservations {
     private TypicalReservations() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns a {@code GastroBook} with all the typical persons.
      */
-    public static GastroBook getTypicalAddressBook() {
+    public static GastroBook getTypicalGastroBook() {
         GastroBook ab = new GastroBook();
         for (Reservation reservation : getTypicalReservations()) {
             ab.addReservation(reservation);

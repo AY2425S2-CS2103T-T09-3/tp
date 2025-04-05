@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_NO_RESERVATIONS_LISTED;
 import static seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW;
-import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReservations.getTypicalGastroBook;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,8 +16,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.reservation.TimeMatchesPredicate;
 
 public class FindByTimeCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGastroBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalGastroBook(), new UserPrefs());
 
     @Test
     public void execute_matchingTimeToday_reservationsFound() {

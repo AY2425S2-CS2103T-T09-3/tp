@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.MarkCommand.MESSAGE_DUPLICATE_MARK;
 import static seedu.address.logic.commands.MarkCommand.MESSAGE_MARK_RESERVATION_SUCCESS;
-import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReservations.getTypicalGastroBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ import seedu.address.model.reservation.StartTime;
 import seedu.address.testutil.ReservationBuilder;
 
 public class MarkCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGastroBook(), new UserPrefs());
 
     //partition: id that exist and id that does not exist
 

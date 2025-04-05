@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_NO_RESERVATIONS_LISTED;
 import static seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW;
-import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReservations.getTypicalGastroBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ public class FindByNameCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalGastroBook(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalGastroBook(), new UserPrefs());
     }
 
     @Test

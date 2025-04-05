@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalReservations.ALICE;
-import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReservations.getTypicalGastroBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ import seedu.address.testutil.ReservationBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGastroBook(), new UserPrefs());
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Reservation editedReservation = ALICE;

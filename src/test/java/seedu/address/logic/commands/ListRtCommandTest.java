@@ -24,7 +24,7 @@ public class ListRtCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalReservations.getTypicalAddressBook(), new PersonsList(), new UserPrefs());
+        model = new ModelManager(TypicalReservations.getTypicalGastroBook(), new PersonsList(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), model.getPersonsList(), new UserPrefs());
         // Set up expected model to filter for today's reservations
         expectedModel.filterReservationsForToday(PREDICATE_SHOW_ALL_RESERVATIONS);
