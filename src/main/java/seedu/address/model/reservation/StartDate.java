@@ -15,11 +15,15 @@ public class StartDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should only be today or tomorrow in the form of DD/MM/YYYY, with leading zeros for single digits.";
     public static final String VALIDATION_REGEX = "^(?:(?:31/(?:0[13578]|1[02]))|"
-                    + "(?:(?:29|30)/(?:0[13-9]|1[0-2]))|"
-                    + "(?:29/02/(?:(?:(?:1[6-9]|[2-9]\\d)"
-                    + "(?:0[48]|[2468][048]|[13579][26]))"
-                    + "|(?:(?:16|[2468][048]|[3579][26])00)))|"
-                    + "(?:0[1-9]|1\\d|2[0-8])/(?:0[1-9]|1[0-2]))/(?:1\\d{3}|[2-9]\\d{3})$";
+            + "(?:(?:29|30)/(?:0[13-9]|1[0-2]))|"
+            + "(?:29/02/(?:(?:(?:1[6-9]|[2-9]\\d)"
+            + "(?:0[48]|[2468][048]|[13579][26]))"
+            + "|(?:(?:16|[2468][048]|[3579][26])00)))|"
+            + "(?:0[1-9]|1\\d|2[0-8])/(?:0[1-9]|1[0-2]))/(?:1\\d{3}|[2-9]\\d{3})$";
+
+    // Flag to bypass date range validation during sample data initialization
+    private static boolean bypassDateRangeValidation = false;
+
     public final String value;
 
     /**
@@ -29,8 +33,29 @@ public class StartDate {
      */
     public StartDate(String date) {
         requireNonNull(date);
+        // Always check format validity
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+
+        // Check date range only if bypass is not enabled to
+        if (!bypassDateRangeValidation) {
+            checkArgument(isValidDateRange(date), MESSAGE_CONSTRAINTS);
+        }
+
         value = date;
+    }
+
+    /**
+     * Enables bypass for date range validation (for sample data initialization).
+     */
+    public static void enableBypassForSampleData() {
+        bypassDateRangeValidation = true;
+    }
+
+    /**
+     * Disables bypass for date range validation for sample data injection.
+     */
+    public static void disableBypassForSampleData() {
+        bypassDateRangeValidation = false;
     }
 
     /**

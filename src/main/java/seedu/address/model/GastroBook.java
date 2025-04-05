@@ -9,6 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.UniqueReservationList;
 
+
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
@@ -56,7 +57,6 @@ public class GastroBook implements ReadOnlyGastroBook {
 
         setReservations(newData.getReservationList());
     }
-
     //// person-level operations
 
     /**
