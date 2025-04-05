@@ -24,7 +24,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reservation to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reservation to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_PAX + "PAX "
             + PREFIX_TABLE + "TABLE "
             + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_REMARK + "REMARK]. "
+            + "[" + PREFIX_REMARK + "REMARK].\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -44,7 +44,8 @@ public class AddCommand extends Command {
             + PREFIX_PAX + "2 "
             + PREFIX_TABLE + "A1 "
             + PREFIX_TAG + "regular "
-            + PREFIX_TAG + "event ";
+            + PREFIX_TAG + "event "
+            + PREFIX_REMARK + "he likes cheese";
 
     public static final String MESSAGE_SUCCESS = "New reservation added: %1$s";
     public static final String MESSAGE_DUPLICATE_RESERVATION = "This reservation already exists in the address book";

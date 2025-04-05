@@ -16,10 +16,10 @@ public class FindByNameCommand extends Command {
 
     public static final String COMMAND_WORD = "findn";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays reservations made by them for today or "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names match any of "
+            + "the specified names (case-insensitive) and displays reservations made by them for today or "
             + "tomorrow as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: NAME [MORE NAMES]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;

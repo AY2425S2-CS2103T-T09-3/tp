@@ -16,9 +16,9 @@ public class FindByPhoneCommand extends Command {
     public static final String COMMAND_WORD = "findp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all reservations whose phone numbers match "
-            + "any of the specified keywords and displays reservations made by them for today or "
+            + "any of the specified phone numbers and displays reservations made by them for today or "
             + "tomorrow as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: PHONE NUMBER [MORE PHONE NUMBERS]...\n"
             + "Example: " + COMMAND_WORD + " 98765432 81234567";
 
     private final PhoneContainsKeywordsPredicate predicate;

@@ -18,15 +18,15 @@ public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the input reservation "
-            + "by the reservation ID. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or edits the remark of the reservation "
+            + "identified by the ID used in the displayed reservation list. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
-            + "+ [time of reservation in HHMM format])"
+            + "Parameters: ID ([6 figures of date (ie: ddMMyyyy) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie: xxxx)] "
+            + "+ [time of reservation in HHMM format]) "
             + PREFIX_REMARK + "[REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 0101202512341230 "
-            + PREFIX_REMARK + "Likes to swim.";
+            + "Example: " + COMMAND_WORD + " 0402202598761700 "
+            + PREFIX_REMARK + "Likes milk and cheese";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to reservation: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from reservation: %1$s";

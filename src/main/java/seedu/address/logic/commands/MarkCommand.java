@@ -15,13 +15,13 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the reservation as paid "
-            + "at the identification used in the reservation listing.\n"
-            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
-            + "+ [time of reservation in HHMM format])"
-            + "Example: " + COMMAND_WORD + " 1803202512341800";
+            + "identified by the ID used in the displayed reservation list.\n"
+            + "Parameters: ID ([6 figures of date (ie: ddMMyyyy) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie: xxxx)] "
+            + "+ [time of reservation in HHMM format])\n"
+            + "Example: " + COMMAND_WORD + " 0402202598761700";
 
-    public static final String MESSAGE_MARK_RESERVATION_SUCCESS = "Successfully marks the reservation";
+    public static final String MESSAGE_MARK_RESERVATION_SUCCESS = "Successfully marks the reservation as paid";
     public static final String MESSAGE_DUPLICATE_MARK = "The reservation has already been marked as paid";
     public final Identification id;
 

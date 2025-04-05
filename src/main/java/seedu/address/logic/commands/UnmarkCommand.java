@@ -14,14 +14,14 @@ import seedu.address.model.reservation.Reservation;
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks the reservation as paid "
-            + "at the identification used in the reservation listing.\n"
-            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
-            + "+ [time of reservation in HHMM format])"
-            + "Example: " + COMMAND_WORD + " 1803202512341800";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the reservation as unpaid "
+            + "identified by the ID used in the displayed reservation list.\n"
+            + "Parameters: ID ([6 figures of date (ie: ddMMyyyy) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie: xxxx)] "
+            + "+ [time of reservation in HHMM format])\n"
+            + "Example: " + COMMAND_WORD + " 0402202598761700";
 
-    public static final String MESSAGE_UNMARK_RESERVATION_SUCCESS = "Successfully unmarks the reservation";
+    public static final String MESSAGE_UNMARK_RESERVATION_SUCCESS = "Successfully marks the reservation as unpaid";
     public static final String MESSAGE_DUPLICATE_UNMARK = "The reservation has already been mark as unpaid";
 
     public final Identification id;

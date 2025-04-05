@@ -20,7 +20,7 @@ public class FindByTimeCommand extends Command {
     public static final String COMMAND_WORD = "findt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all reservations scheduled for today that are ongoing at the specified time.\n"
+            + ": Finds all reservations scheduled for today only that are ongoing at the specified time.\n"
             + "Parameters: TIME (in HHmm format)\n"
             + "Example: " + COMMAND_WORD + " 1400";
 

@@ -42,11 +42,11 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reservation identified "
-            + "by the index number used in the displayed reservation list. "
+            + "by the ID used in the displayed reservation list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
-            + "+ [time of reservation in HHMM format])"
+            + "Parameters: ID ([6 figures of date (ie: ddMMyyyy) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie: xxxx)] "
+            + "+ [time of reservation in HHMM format]) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_DATE + "DATE] "
